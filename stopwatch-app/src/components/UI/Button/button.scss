@@ -1,0 +1,19 @@
+.button {
+  padding: 10px 20px;
+  margin-left: 15px;
+  background-color: #fff;
+  border: 1px solid #000;
+  outline: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 600;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:hover {
+    background-color: #000;
+    color: #fff;
+  }
+}
