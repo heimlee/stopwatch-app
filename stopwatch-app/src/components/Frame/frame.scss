@@ -1,0 +1,19 @@
+$frame-height: 600px;
+$frame-padding: 20px;
+$frame-width: 400px;
+
+.frame {
+  width: 100%;
+  padding: $frame-padding;
+  // box-shadow:
+  //           0 16px 24px 2px rgba(0,0,0,0.14)
+  //           0 6px 30px 5px rgba(0,0,0,0.12)
+  //           0 8px 10px -7px rgba(0,0,0,0.2)
+}
+
+@media (min-width: 500px) {
+  .frame {
+    width: $frame-width;
+    height: $frame-height;
+  }
+}

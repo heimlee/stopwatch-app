@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Sec } from './Sec/Sec';
 
-import './Timer.scss';
+import './timer.scss';
 
 export const Timer = ({ sec }) => (
   <div className="timer-row">
