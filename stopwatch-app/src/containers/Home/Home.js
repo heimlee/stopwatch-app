@@ -10,7 +10,6 @@ export const Home = () => {
   const [ sec, setSec ] = useState(0);
   const [ isStarted, setIsStarted ] = useState(false);
   const [ isPaused, setIsPaused ] = useState(false);
-  const [ isWaited, setIsWaited ] = useState(false);
   const [ isReset, setIsReset ] = useState(false);
   const countRef = useRef(null);
 
@@ -67,7 +66,6 @@ export const Home = () => {
   const wait = () => {
     setIsStarted(false);
     setIsPaused(false);
-    setIsWaited(true);
     clearInterval(countRef.current);
   };
 

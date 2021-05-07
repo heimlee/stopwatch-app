@@ -9,6 +9,7 @@ function App() {
   return (
     <div className="App">
       <Frame>
+        <h2 className="App-title">Stopwatch</h2>
         <Home />
       </Frame>
     </div>
