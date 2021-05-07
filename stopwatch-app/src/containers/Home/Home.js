@@ -1,5 +1,5 @@
-import React, { Fragment, useRef, useState } from 'react';
-// import { Observable } from 'rxjs';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
+import { Observable } from 'rxjs';
 
 import { Timer } from '../../components/Timer/Timer';
 import { Button } from '../../components/UI/Button/Button';
@@ -10,35 +10,71 @@ export const Home = () => {
   const [ sec, setSec ] = useState(0);
   const [ isStarted, setIsStarted ] = useState(false);
   const [ isPaused, setIsPaused ] = useState(false);
+  const [ isWaited, setIsWaited ] = useState(false);
+  const [ isReset, setIsReset ] = useState(false);
   const countRef = useRef(null);
 
+  useEffect(() => {
+    const observable = new Observable(observer => {
+      if (isStarted && isPaused) {
+        countRef.current = setInterval(() => {
+          observer.next(setSec((s) => s + 1000));
+        }, 1000);  
+      }
+    });
+  
+    observable.subscribe({
+      next: console.log
+    });
+  }, [isStarted, isPaused]);
+
+  useEffect(() => {
+    const observable = new Observable(observer => {
+      if (!isStarted && isPaused) {
+        clearInterval(countRef.current);
+        observer.next(setSec(0));
+      }
+    });
+
+    observable.subscribe({
+      next: console.log
+    });
+  }, [isStarted, isPaused]);
+
+  useEffect(() => {
+    const observable = new Observable(observer => {
+      if (isReset && !isStarted && !isPaused) {
+        clearInterval(countRef.current);
+        observer.next(setSec(0));
+      } 
+    });
+
+    observable.subscribe({
+      next: console.log
+    });
+  }, [isReset, isStarted, isPaused]);
 
   const start = () => {
     setIsStarted(true);
     setIsPaused(true);
-    countRef.current = setInterval(() => {
-      setSec((s) => s + 1000);
-    }, 1000);
   };
 
   const stop = () => {
-    clearInterval(countRef.current);
     setIsStarted(false);
     setIsPaused(true);
-    setSec(0);
   };
 
   const wait = () => {
     setIsStarted(false);
-    setIsPaused(true);
+    setIsPaused(false);
+    setIsWaited(true);
     clearInterval(countRef.current);
   };
 
   const reset = () => {
-    clearInterval(countRef.current);
     setIsStarted(false);
     setIsPaused(false);
-    setSec(0);
+    setIsReset(true);
   };
 
   return (
