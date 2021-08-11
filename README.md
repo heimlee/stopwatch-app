@@ -8,6 +8,8 @@ The App calculates time in format of "hh:mm:ss" and has buttons like this:
 
 [Check the Demo](https://heimlee.github.io/stopwatch-app/)
 
+### ⚙️ Use `npm start` command to run app locally
+
 ![stopwatch-app-screenshot](https://user-images.githubusercontent.com/43527919/117399180-99ced400-af08-11eb-96cc-42a762fe8201.png)
 
 - React
